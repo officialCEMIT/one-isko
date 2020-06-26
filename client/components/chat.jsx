@@ -6,12 +6,12 @@ const ENDPOINT = "http://127.0.0.1:8000";
 const socket = socketIOClient(ENDPOINT);
 export default function ChatComponent() {
   const [response, setResponse] = useState("");
-  const {value: message, bind: bindMessage } = useInput('');
+  const {value: message, bind: bindMessage, reset: resetMessage } = useInput('');
   const [chat, setChat] = useState([]);
 
   const submitMessage = (e) => {
     e.preventDefault()
-
+    resetMessage()
     socket.emit('chatMessage', message);
   }
 
@@ -21,12 +21,19 @@ export default function ChatComponent() {
     });
 
     socket.on('message', data => {
-      chat.push(data);
+      setChat(prev => [...prev, data])
     })
     // return () => socket.disconnect();
 
   }, []);
 
+  const chatBoxStyle = {
+    height: '250px',
+    padding: '10px',
+    backgroundColor: 'gray',
+    overflowY: 'scroll',
+    clear: 'both'
+  }
   return (
     <div>
       <p>
@@ -35,7 +42,10 @@ export default function ChatComponent() {
           <input type="text" {...bindMessage}/>
           <button onClick={submitMessage}>Send</button>
         </form>
-        {chat.map((v, i) => { return <div key={`chat${i}`}>{v}</div>})}
+        <div style={chatBoxStyle}>
+          {chat.map((v, i) => {
+            return <div key={`chat${i}`}>{v}</div>})}
+        </div>
     </div>
  
   );
