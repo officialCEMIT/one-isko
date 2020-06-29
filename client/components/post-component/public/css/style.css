@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  line-height: 1.5;
+  font-family: "Lato", sans-serif;
+}
+
+button {
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: inherit;
+  color: inherit;
+}
+
+.post {
+  max-width: 500px;
+  width: 100%;
+  margin: 1rem auto;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  padding: 1rem 1.5rem 1rem 0.5rem;
+  cursor: pointer;
+  transition: 300ms;
+  position: relative;
+}
+
+.post:hover {
+  background-color: #34495e;
+}
+
+.post__userImg {
+  display: block;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.post__userDetails {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.post__username:hover {
+  color: limegreen;
+  text-decoration: underline;
+}
+
+.post__dropdown {
+  position: absolute;
+  top: 0.5rem;
+  right: 0;
+}
+
+.post__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post__cover {
+  border-radius: 1rem;
+  overflow: hidden;
+  margin: 1rem 0;
+  transition: 300ms;
+}
+
+.post__cover:hover {
+  filter: brightness(60%);
+}
+
+.post__username {
+  margin-right: 0.5rem;
+}
+
+.post__actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.post button {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  transition: 300ms;
+}
+
+.post button:hover {
+  transform: scale(1.1);
+  color: limegreen;
+}
+
+.post .options {
+  width: max-content;
+  display: grid;
+  position: absolute;
+  justify-items: start;
+  top: 2rem;
+  right: 2rem;
+  background-color: #2c3e50;
+  transition: 300ms;
+  box-shadow: 0 0 1rem rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transform: translateY(-5px);
+  pointer-events: none;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.post .options__btn {
+  width: 100%;
+  padding: 1rem;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.post .options__btn i {
+  margin-right: 10px;
+}
+
+.showOptions {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  pointer-events: all !important;
+}
