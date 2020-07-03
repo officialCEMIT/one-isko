@@ -1,15 +1,25 @@
-import '../static/post.css';
-
-import Head from 'next/head'
+import '../public/post.css';
 import MainLayout from '../layouts/MainLayout';
-import Post from '../components/post/Post';
 
-import React, {useState} from 'react';
+import React, { Component, useEffect, useState } from "react";
+import { Provider } from "react-redux";
 
-export default function Home() {
-    return (
+import store from "../store/store";
+import { loadUser } from "store/actions/authActions";
+
+const Home = () => {
+  useEffect(() => { // equivalent to componentWillMount();
+    store.dispatch(loadUser());
+  });
+
+  return (
+    <Provider store={store}>
       <MainLayout>
+        <h1>Hello There</h1>
       </MainLayout>
-    );
+    </Provider>
+  );
 }
 
+
+export default Home;
