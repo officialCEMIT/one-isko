@@ -6,20 +6,31 @@ const socketio = require('socket.io');
 const server = http.createServer(app);
 const io = socketio(server);
 
-const cors = require('cors');
-const mongoose = require('mongoose');
-require('dotenv/config');
+const cors = require("cors");
+const mongoose = require("mongoose");
+require("dotenv/config");
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); // GLOBAL JSON
 
-const api = require('./routes/index');
-app.use('/api', api);
+const api = require("./routes/index");
+app.use("/api", api);
+// Use User Routes
+const users = require("./routes/index");
+app.use("./users", users);
+// Use Auth Routes
+const auth = require("./routes/index");
+app.use("./auth", auth);
 
-mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
-    console.log(`CONNECTED TO ${process.env.DB_CONNECTION}`)
-})
+mongoose.connect(
+  process.env.DB_CONNECTION,
+  { useNewUrlParser: true, useUnifiedTopology: true },
+  () => {
+    console.log(`CONNECTED TO ${process.env.DB_CONNECTION}`);
+  }
+);
+mongoose.set("useCreateIndex", true);
 
 let interval;
 io.on('connection', socket => {
