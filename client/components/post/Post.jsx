@@ -1,4 +1,5 @@
 import React,{useState} from "react";
+import Head from 'next/head'
 import Options from "./Options";
 
 export default function Post(props) {
@@ -8,6 +9,14 @@ export default function Post(props) {
 
     return (
         <div className="post">
+            <Head>
+              <link
+                  rel="stylesheet"
+                  href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+                  integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ"
+                  crossOrigin="anonymous"
+                  />
+            </Head>
             <Options optionDisplay={optionDisplay} setOptionDisplay={setOptionDisplay}/>
 
             <img
